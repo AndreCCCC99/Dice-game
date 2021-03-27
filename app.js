@@ -123,6 +123,37 @@ function throwdice() {
     }
 }
 
+//Question : what is n parameter? 
+function drawface(n) {
+
+    ctx = document.getElementsById('canvas').getContext('2d');
+    ctx.lineWidth = 5;
+    ctx.clearRect(dX, dY, diceW, diceH);
+    ctx.strokeRect(dX, dY, diceW, diceH);
+    ctx.fillStyle = "#009966";
+
+        switch(n) {
+            case 1 : 
+            draw1();
+            break;
+            case 2 :
+            draw2(); 
+            break;
+            case 3: 
+            draw2();
+            draw1();
+            break;
+            case 4: 
+            draw4(); 
+            break;
+            case 5:
+            draw4();
+            draw1();
+            case 6:
+            draw2mid();
+            break;
+        }
+}
 
 function init() {
 
