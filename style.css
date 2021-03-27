@@ -1,0 +1,44 @@
+body {
+
+}
+
+
+#game1{
+
+    border: 3px solid green 
+}
+
+#f{
+    border: 1px black solid;
+    position: relative;
+    left : 50%;
+}
+
+#game2{
+
+    border: 3px solid red
+}
+
+#mf{
+    border: 1px black solid;
+}
+
+
+#canvas{
+    border: 1px black solid;
+}
+
+#mycanvas{
+
+    border: 1px black solid;
+}
+
+table{
+
+    border: 1px black solid;
+
+}
+
+tr{
+    width:100%;
+}
