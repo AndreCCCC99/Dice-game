@@ -18,8 +18,8 @@ var dotR = 10;
 
 function throwMyDice() {
 
-    number = Math.floor(Math.random() * 5) + 1;
-    alert(number);
+    number = Math.floor(Math.random() * 6) + 1;
+    console.log(number);
     drawFace(number);
 }
 
