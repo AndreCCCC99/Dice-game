@@ -1,5 +1,3 @@
-
-
 /// GENERAL SHEETCODES
 
 //fazer rect
@@ -42,18 +40,18 @@ function init() {
 
 
 
-var cvswidth = 400; 
-var cvsheight = 300; 
+var cvswidth = 400;
+var cvsheight = 300;
 
-var diceX = 50; 
-var diceY = 50; 
-var diceW = 100; 
-var diceH = 100; 
+var diceX = 50;
+var diceY = 50;
+var diceW = 100;
+var diceH = 100;
 
-var dotR = 6; 
+var dotR = 6;
 var ctx;
-var dX; 
-var dY; 
+var dX;
+var dY;
 
 var firstTurn = true;
 var point;
@@ -61,12 +59,12 @@ var point;
 
 function throwdice() {
     document.f.outcome.value = "";
-    var sum ; 
+    var sum;
     var ch = 1 + Math.floor(Math.random() * 6);
     sum = ch;
 
     dX = diceX;
-    dy = diceY;
+    dY = diceY;
 
     //desenhar a primeira cara do dado 
     drawface(ch);
@@ -74,96 +72,99 @@ function throwdice() {
     dX = diceX + 150; //posicao horizontal 
 
     //repetir processo 
-    ch = 1 + Math.floor(Math.random()*6);
+    ch = 1 + Math.floor(Math.random() * 6);
 
     sum += ch;
 
     drawface(ch);
 
-    if(firstTurn) { // para primeira jogada 
-        
-        
-        switch(sum) {
-            case 7 : 
-            case 11 : 
-            document.f.pv.value = sum;
-            document.f.outcome.value = "YOU WIN"
-            break;
+    if (firstTurn) { // para primeira jogada 
 
-            case 2: 
-            case 3: 
-            case 12: 
-            document.f.pv.value = sum;
-            document.f.outcome.value = "YOU LOST"
-            break;
-            
-            default: 
-            point = sum; 
-            //display por colocar
-            document.f.pv.value = sum;
-            document.f.stage.value = "Throw Again.";
+
+        switch (sum) {
+            case 7:
+            case 11:
+                document.f.pv.value = sum;
+                document.f.outcome.value = "YOU WIN"
+                break;
+
+            case 2:
+            case 3:
+            case 12:
+                document.f.pv.value = sum;
+                document.f.outcome.value = "YOU LOST"
+                break;
+
+            default:
+                point = sum;
+                //display por colocar
+                document.f.pv.value = sum;
+                document.f.stage.value = "Throw Again.";
         }
-    }
+    } else {
+        switch (sum) {
+            case point:
 
-    else{
-        switch(sum){
-            case point: 
+                document.f.stage.value = "Back to First";
+                document.f.pv.value = sum;
+                document.f.outcome = "YOU WIN!!"
+                firstTurn = true;
+                break;
 
-            document.f.stage.value= "Back to First";
-            document.f.pv.value = sum;
-            document.f.outcome = "YOU WIN!!"
-            firstTurn = true;
-            break;
-
-            case 7: 
-            alert("YOU LOSE!");
-            document.f.stage.value = "Back to First";
-           document.f.pv.value = " ";
-            firstTurn = true;
+            case 7:
+                alert("YOU LOSE!");
+                document.f.stage.value = "Back to First";
+                document.f.pv.value = " ";
+                firstTurn = true;
         }
-         
+
     }
 }
 
 //Question : what is n parameter? sum
 function drawface(n) {
 
-    ctx = document.getElementById('canvas').getContext('2d');
-    ctx.lineWidth = 5;
-    ctx.clearRect(dX, dY, diceW, diceH);
-    ctx.strokeRect(dX, dY, diceW, diceH);
-    ctx.fillStyle = "#009966";
+    //ctx.strokeRect(100,50,200,300);
+    //ctx.linWidth = 5; 
+    //ctx.strokeStyle = "rgb(255, 0, 0)";
 
-        switch(n) {
-            case 1 : 
+    ctx = document.getElementById('canvas').getContext('2d');
+    ctx.beginPath();
+    ctx.lineWidth = 5;
+    ctx.strokeRect(dX, dY, diceW, diceH);
+    ctx.strokeStyle = "#009966";
+    ctx.closePath();
+
+    switch (n) {
+        case 1:
             draw1();
             break;
-            case 2 :
-            draw2(); 
+        case 2:
+            draw2();
             break;
-            case 3: 
+        case 3:
             draw2();
             draw1();
             break;
-            case 4: 
-            draw4(); 
+        case 4:
+            draw4();
             break;
-            case 5:
+        case 5:
             draw4();
             draw1();
-            case 6:
+        case 6:
             draw2mid();
             break;
-        }
+    }
 }
 
 function draw1() {
     var dotX;
     var dotY;
     ctx.beginPath();
-    dotX = dX + 0.5*diceW;
-    dotY = dY + 0.5*diceH;
-    ctx.arc(dotX, dotY, dotR, 0, Math.PI*2,true );
+    dotX = dX + 0.5 * diceW;
+    dotY = dY + 0.5 * diceH;
+    ctx.arc(dotX, dotY, dotR, 0, Math.PI * 2, true);
     ctx.closePath();
     ctx.fill();
 }
@@ -173,12 +174,12 @@ function draw2() {
     var dotX;
     var dotY;
     ctx.beginPath();
-    dotX = dX + 3*dotR;
-    dotY = dY + 3*dotR;
-    ctx.arc(dotX, dotY, dotR, 0, Math.PI*2,true);
-    dotX = dX+diceW - 3* dotR;
-    dotY = dY+diceH - 3* dotR;
-    ctx.arc(dotX,dotY, dotR, 0, Math.PI*2, true);
+    dotX = dX + 3 * dotR;
+    dotY = dY + 3 * dotR;
+    ctx.arc(dotX, dotY, dotR, 0, Math.PI * 2, true);
+    dotX = dX + diceW - 3 * dotR;
+    dotY = dY + diceH - 3 * dotR;
+    ctx.arc(dotX, dotY, dotR, 0, Math.PI * 2, true);
     ctx.closePath();
     ctx.fill();
 
@@ -190,39 +191,39 @@ function draw4() {
     var dotY;
 
     ctx.beginPath();
-    dotX = dX + 3*dotR;
-    dotY = dY + 3*dotR;
-    ctx.arc(dotX, dotY, dotR, 0, Math.PI*2, true);
-    
-    dotX = dX+diceW-3*dotR;
-    dotY = dY+diceH - 3 * dotR;
-    ctx.arc(dotX,dotY, dotR, 0, Math.PI*2, true);
+    dotX = dX + 3 * dotR;
+    dotY = dY + 3 * dotR;
+    ctx.arc(dotX, dotY, dotR, 0, Math.PI * 2, true);
+
+    dotX = dX + diceW - 3 * dotR;
+    dotY = dY + diceH - 3 * dotR;
+    ctx.arc(dotX, dotY, dotR, 0, Math.PI * 2, true);
 
     ctx.closePath();
     ctx.fill();
 
     ctx.beginPath();
-    dotX = dX + 3*dotR;
-    dotY = dY + 3*dotR;
-    ctx.arc(dotX, dotY, dotR, 0, Math.PI*2, true);
-    
-    dotX = dX+diceW- 3*dotR;
-    dotY = dY+diceH - 3* dotR;
-    ctx.arc(dotX,dotY, dotR, 0, Math.PI*2, true);
+    dotX = dX + 3 * dotR;
+    dotY = dY + 3 * dotR;
+    ctx.arc(dotX, dotY, dotR, 0, Math.PI * 2, true);
+
+    dotX = dX + diceW - 3 * dotR;
+    dotY = dY + diceH - 3 * dotR;
+    ctx.arc(dotX, dotY, dotR, 0, Math.PI * 2, true);
 
     ctx.closePath();
     ctx.fill();
 
     ctx.beginPath();
-    dotX = dX + 3*dotR;
-    dotY = dY + diceH-3* dotR;
+    dotX = dX + 3 * dotR;
+    dotY = dY + diceH - 3 * dotR;
 
-    ctx.arc(dotX, dotY, dotR, 0, Math.PI*2, true);
+    ctx.arc(dotX, dotY, dotR, 0, Math.PI * 2, true);
 
-    dotX = dX + diceW - 3*dotR;
-    dotY = dY+ 3*dotR;
+    dotX = dX + diceW - 3 * dotR;
+    dotY = dY + 3 * dotR;
 
-    ctx.arc(dotX, dotY, dotR, 0, Math.PI*2, true);
+    ctx.arc(dotX, dotY, dotR, 0, Math.PI * 2, true);
 
     ctx.closePath();
     ctx.fill();
@@ -230,21 +231,12 @@ function draw4() {
 
 // what tha fyuck ? 
 function draw2mid() {
-    var dotX ;
+    var dotX;
     var dotY;
     ctx.beginPath();
 
-    dotX = dX + 3 *dotR;
+    dotX = dX + 3 * dotR;
     dotY = dY + 0.5 * diceH;
-    
-    ctx.arc(dotX, dotY, dotR, 0, Math.PI*2)
+
+    ctx.arc(dotX, dotY, dotR, 0, Math.PI * 2)
 }
-
-
-
-
-
-
-
-
-
