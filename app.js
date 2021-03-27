@@ -60,6 +60,7 @@ var point;
 // some
 
 function throwdice() {
+    document.f.outcome.value = "";
     var sum ; 
     var ch = 1 + Math.floor(Math.random() * 6);
     sum = ch;
@@ -85,8 +86,8 @@ function throwdice() {
         switch(sum) {
             case 7 : 
             case 11 : 
-            document.f.outcome.value = "YOU WIN"
             document.f.pv.value = sum;
+            document.f.outcome.value = "YOU WIN"
             break;
 
             case 2: 
@@ -99,19 +100,18 @@ function throwdice() {
             default: 
             point = sum; 
             //display por colocar
-            document.f.stage.value = "Throw Again.";
             document.f.pv.value = sum;
+            document.f.stage.value = "Throw Again.";
         }
     }
 
     else{
         switch(sum){
             case point: 
-            alert("YOU WIIIN");
 
-              
-            document.f.outcome= "Back to First";
-            document.f.pv.value = " ";
+            document.f.stage.value= "Back to First";
+            document.f.pv.value = sum;
+            document.f.outcome = "YOU WIN!!"
             firstTurn = true;
             break;
 
