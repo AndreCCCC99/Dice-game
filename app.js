@@ -57,7 +57,7 @@ var dY;
 
 var firstTurn = true;
 var point;
-
+// some
 
 function throwdice() {
     var sum ; 
