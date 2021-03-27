@@ -50,8 +50,10 @@ var diceH = 100;
 
 var dotR = 6;
 var ctx;
-var dX;
-var dY;
+
+//  Positioning for both dices
+var facesX;
+var facesY;
 
 var firstTurn = true;
 var point;
@@ -69,7 +71,7 @@ function throwdice() {
     //desenhar a primeira cara do dado 
     drawface(ch);
 
-    dX = diceX + 150; //posicao horizontal 
+    dX = diceX + 150; //posicao horizontal para segunda cara
 
     //repetir processo 
     ch = 1 + Math.floor(Math.random() * 6);
@@ -131,9 +133,11 @@ function drawface(n) {
     ctx = document.getElementById('canvas').getContext('2d');
     ctx.beginPath();
     ctx.lineWidth = 5;
+    ctx.clearRect(dX, dY, diceW, diceH)
     ctx.strokeRect(dX, dY, diceW, diceH);
     ctx.strokeStyle = "#009966";
-    ctx.closePath();
+    var dotX;
+    var dotY;
 
     switch (n) {
         case 1:
@@ -161,9 +165,11 @@ function drawface(n) {
 function draw1() {
     var dotX;
     var dotY;
+
     ctx.beginPath();
     dotX = dX + 0.5 * diceW;
     dotY = dY + 0.5 * diceH;
+
     ctx.arc(dotX, dotY, dotR, 0, Math.PI * 2, true);
     ctx.closePath();
     ctx.fill();
