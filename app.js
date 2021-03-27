@@ -64,7 +64,7 @@ function throwdice() {
     var ch = 1 + Math.floor(Math.random() * 6);
     sum = ch;
 
-    dX = diceyX;
+    dX = diceX;
     dy = diceY;
 
     //desenhar a primeira cara do dado 
@@ -79,27 +79,28 @@ function throwdice() {
 
     drawface(ch);
 
-    if(firsturn) { // para primeira jogada 
+    if(firstTurn) { // para primeira jogada 
         
         
         switch(sum) {
             case 7 : 
             case 11 : 
-
-            alert("You WIN!");
+            document.f.outcome.value = "YOU WIN"
+            document.f.pv.value = sum;
             break;
 
             case 2: 
             case 3: 
             case 12: 
-            alert("YOU LOOOOOOSE! LOSER!");
+            document.f.pv.value = sum;
+            document.f.outcome.value = "YOU LOST"
             break;
             
             default: 
             point = sum; 
             //display por colocar
-            document.getElementsByName('f').getElementById("stage").value = "Throw Again.";
-            document.getElementsByName('f').getElementById("pv").value = " ";
+            document.f.stage.value = "Throw Again.";
+            document.f.pv.value = sum;
         }
     }
 
@@ -108,25 +109,26 @@ function throwdice() {
             case point: 
             alert("YOU WIIIN");
 
-            document.getElementsByName('f').getElementById("stage").value = "Back to First";
-            document.getElementsByName('f').getElementById("pv").value = " ";
+              
+            document.f.outcome= "Back to First";
+            document.f.pv.value = " ";
             firstTurn = true;
             break;
 
             case 7: 
             alert("YOU LOSE!");
-            document.getElementsByName('f').getElementById("stage").value = "Back to First";
-            document.getElementsByName('f').getElementById("pv").value = " ";
+            document.f.stage.value = "Back to First";
+           document.f.pv.value = " ";
             firstTurn = true;
         }
          
     }
 }
 
-//Question : what is n parameter? 
+//Question : what is n parameter? sum
 function drawface(n) {
 
-    ctx = document.getElementsById('canvas').getContext('2d');
+    ctx = document.getElementById('canvas').getContext('2d');
     ctx.lineWidth = 5;
     ctx.clearRect(dX, dY, diceW, diceH);
     ctx.strokeRect(dX, dY, diceW, diceH);
@@ -155,34 +157,94 @@ function drawface(n) {
         }
 }
 
-function init() {
-
-    var ctx = document.getElementById('canvas').getContext('2d');
-
-    dotR 
-
-
-    //rect do dado 
+function draw1() {
+    var dotX;
+    var dotY;
     ctx.beginPath();
-    ctx.strokeStyle = "rgb(255, 0, 0)"; 
-    ctx.rect(50,50, 100, 100); 
-    ctx.stroke();
+    dotX = dX + 0.5*diceW;
+    dotY = dY + 0.5*diceH;
+    ctx.arc(dotX, dotY, dotR, 0, Math.PI*2,true );
+    ctx.closePath();
+    ctx.fill();
+}
 
 
-    //bola de dado 
+function draw2() {
+    var dotX;
+    var dotY;
     ctx.beginPath();
-    ctx.strokeStyle = "green";
-    ctx.arc(75, 75, 8, 0, Math.PI*2, false);
-    ctx.fillStyle  ="green"
-    ctx.stroke();
+    dotX = dX + 3*dotR;
+    dotY = dY + 3*dotR;
+    ctx.arc(dotX, dotY, dotR, 0, Math.PI*2,true);
+    dotX = dX+diceW - 3* dotR;
+    dotY = dY+diceH - 3* dotR;
+    ctx.arc(dotX,dotY, dotR, 0, Math.PI*2, true);
+    ctx.closePath();
     ctx.fill();
 
-} 
+}
+
+
+function draw4() {
+    var dotX;
+    var dotY;
+
+    ctx.beginPath();
+    dotX = dX + 3*dotR;
+    dotY = dY + 3*dotR;
+    ctx.arc(dotX, dotY, dotR, 0, Math.PI*2, true);
+    
+    dotX = dX+diceW-3*dotR;
+    dotY = dY+diceH - 3 * dotR;
+    ctx.arc(dotX,dotY, dotR, 0, Math.PI*2, true);
+
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.beginPath();
+    dotX = dX + 3*dotR;
+    dotY = dY + 3*dotR;
+    ctx.arc(dotX, dotY, dotR, 0, Math.PI*2, true);
+    
+    dotX = dX+diceW- 3*dotR;
+    dotY = dY+diceH - 3* dotR;
+    ctx.arc(dotX,dotY, dotR, 0, Math.PI*2, true);
+
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.beginPath();
+    dotX = dX + 3*dotR;
+    dotY = dY + diceH-3* dotR;
+
+    ctx.arc(dotX, dotY, dotR, 0, Math.PI*2, true);
+
+    dotX = dX + diceW - 3*dotR;
+    dotY = dY+ 3*dotR;
+
+    ctx.arc(dotX, dotY, dotR, 0, Math.PI*2, true);
+
+    ctx.closePath();
+    ctx.fill();
+}
+
+// what tha fyuck ? 
+function draw2mid() {
+    var dotX ;
+    var dotY;
+    ctx.beginPath();
+
+    dotX = dX + 3 *dotR;
+    dotY = dY + 0.5 * diceH;
+    
+    ctx.arc(dotX, dotY, dotR, 0, Math.PI*2)
+}
 
 
 
 
-window.onload = init;
+
+
 
 
 
