@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src = "app.js"></script>
+    <script src="app.js"></script>
     <title>Document</title>
 </head>
+
 <body>
-    <form name ="f" id="f">
-        Stage: <input name="stage" value="First Throw"/>
-        Point: <input name="pv" value=" "/>
-        Outcome: <input name="outcome" value=" "/>
-        </form>
-    <canvas id="canvas" width = "400" height = "300">
-     
+    <h1>Form - Resolution 1</h1>
+    <form name="f" id="f">
+        Stage: <input name="stage" value="First Throw" />
+        Point: <input name="pv" value=" " />
+        Outcome: <input name="outcome" value=" " />
+    </form>
+    <canvas id="canvas" width="400" height="300">
+
     </canvas>
     <button onClick="throwdice();">ThrowDice</button>
+
+//------------------------------------------------------ MY DICE 
+    <h1>My Form My Resolution</h1>
+    <form name="mf" id="mf">
+        Phase: <input name="phase" value="First Throw" />
+        Point: <input name="points" value=" " />
+        Output: <input name="output" value=" " />
+    </form>
+    <canvas id="mycanvas" width="400" height="300">
+
+    </canvas>
+    <button onClick="throwMyDice();">ThrowMyDice</button>
+
 </body>
+
 </html>

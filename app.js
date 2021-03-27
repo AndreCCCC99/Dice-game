@@ -136,8 +136,6 @@ function drawface(n) {
     ctx.clearRect(dX, dY, diceW, diceH)
     ctx.strokeRect(dX, dY, diceW, diceH);
     ctx.strokeStyle = "#009966";
-    var dotX;
-    var dotY;
 
     switch (n) {
         case 1:
