@@ -172,7 +172,7 @@ function drawFace(number) {
         ctx.closePath();
 
         ctx.beginPath();
-        ctx.arc(25, 50, dotR, 0, Math.PI * 2, false);
+        ctx.arc(25, 75, dotR, 0, Math.PI * 2, false);
         ctx.stroke();
         ctx.closePath();
 
@@ -182,6 +182,11 @@ function drawFace(number) {
         ctx.stroke();
         ctx.closePath();
 
+        ctx.beginPath();
+        ctx.arc(75, 50, dotR, 0, Math.PI * 2, false);
+        ctx.stroke();
+        ctx.closePath();
+        
         ctx.beginPath();
         ctx.arc(75, 75, dotR, 0, Math.PI * 2, false);
         ctx.stroke();
